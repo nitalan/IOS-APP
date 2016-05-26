@@ -16,7 +16,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     let basicCellIdentifier = "BasicCell"
     let imageCellIdentifier = "ImageCell"
      var connectManager:ConnectManager?
-    
+    let blogSegueIdentifier = "ShowDetail"
+     let blogSegueIdentifier2 = "ShowDetail2"
     
     var feeds = [Feed]()
     var votes = [Vote]()
@@ -38,25 +39,48 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func lostPeer() {
-        
+        connectedUsers=[]
+        let selectedPeer = connectManager!.foundPeers as [MCPeerID]
+        for peer in selectedPeer{
+            connectedUsers.append(peer.displayName)
+        }
+       // print("yes")
+        loadSampleFeeds()
+        self.homeTable.reloadData()
+        dispatch_async(dispatch_get_main_queue(),{
+            self.homeTable.reloadData()
+        });
     }
     
     func invitationWasReceived(fromPeer: String) {
         
     }
     
+    func displayMyAlertMessage(userMessage:String)
+    {
+        let MyAlert = UIAlertController(title:"Alert",message:userMessage,preferredStyle:UIAlertControllerStyle.Alert);
+        
+        let okAction = UIAlertAction(title:"OK",style:UIAlertActionStyle.Default,handler:nil)
+        
+        MyAlert.addAction(okAction)
+        self.presentViewController(MyAlert,animated:true,completion:nil);
+    }
     
-
+    
+    
+    
     
     func loadSampleFeeds() {
         
         feeds = [Feed]()
         
+        
+        
         var jsonData:NSData?
         do {
             jsonData = try NSJSONSerialization.dataWithJSONObject(connectedUsers, options: NSJSONWritingOptions.PrettyPrinted)
         }catch let error as NSError{
-            print(error.description)
+            //print(error.description)
         }
         let poststring = NSString(data: jsonData!, encoding: NSUTF8StringEncoding)
         
@@ -85,11 +109,11 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 // You can print out response object
                 
-                print("response = \(response)")
+                //print("response = \(response)")
                 
                 // Print out response body
                 let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("responseString = \(responseString)")
+                //print("responseString = \(responseString)")
                 
                 //var err: NSError?
                 
@@ -103,16 +127,21 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     if getFeeds==nil{
                         return
                     }
-                    _ = parseJSON["test"] as? NSArray
+                    let success = parseJSON["status"] as! Int
+                    
+                    if(success==0){
+                        return
+                    }
+                    
                     for items in getFeeds!
                     {
-                        let id = items[0] as! String
-                        let username = items[1] as! String
-                        let des = items[2] as! String
-                        let time = items[3] as! String
-                        let commentSize = items[4] as! String
-                        let voteNum = items[5] as! String
-                        let image = items[6] as! String
+                        let id = items.objectAtIndex(0)  as! String
+                        let username = items.objectAtIndex(1) as! String
+                        let des = items.objectAtIndex(2) as! String
+                        let time = items.objectAtIndex(3)as! String
+                        let commentSize = items.objectAtIndex(4) as! String
+                        let voteNum = items.objectAtIndex(5) as! String
+                        let image = items.objectAtIndex(6) as! String
                         //                        let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                         //                        let decodedimage = UIImage(data: decodedData!)
                         // println(decodedimage)
@@ -127,9 +156,9 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     if getFeedFollow != nil {
                         for items2 in getFeedFollow!
                         {
-                            let vote_person = items2[1] as! String
-                            let vote_feed = items2[2] as! String
-                            let value = items2[3] as! String
+                            let vote_person = items2.objectAtIndex(1) as! String
+                            let vote_feed = items2.objectAtIndex(2) as! String
+                            let value = items2.objectAtIndex(3) as! String
                             let votex = Vote(vote_person:vote_person, vote_feed: Int(vote_feed)!, value:Int(value)!)!
                             self.votes.append(votex)
                         }
@@ -153,6 +182,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //print("bbb")
+        
         homeTable.delegate = self
         homeTable.dataSource = self
         self.homeTable.rowHeight = 170;
@@ -163,10 +194,23 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         connectManager!.browser.startBrowsingForPeers()
         
         connectManager!.advertiser.startAdvertisingPeer()
-
+        
+        //self.displayMyAlertMessage("bbbb2" + (prefs.valueForKey("USERNAME") as! String)+"^" )
+       // self.automaticallyAdjustsScrollViewInsets = false
+        //print("bbb2")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        var str = "hello"+String(connectedUsers.count)+","
+        for s in connectedUsers{
+            str += s+","
+        }
+        //self.displayMyAlertMessage(str)
     }
     
     override func viewWillAppear(animated: Bool) {
+        //print("fff")
+        
         loadSampleFeeds()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -175,12 +219,18 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         })
         
     }
-
+    
+    
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {
         
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLogged")
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        connectManager!.browser.stopBrowsingForPeers()
+        
+        connectManager!.advertiser.stopAdvertisingPeer()
+        
         
         let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("login") as! LoginViewController
         
@@ -188,7 +238,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         appDelegate.window?.rootViewController = loginViewController
         
         appDelegate.window?.makeKeyAndVisible()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -208,8 +257,12 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if feeds.isEmpty {
+            let cell = self.homeTable.dequeueReusableCellWithIdentifier(basicCellIdentifier) as! BasicCell
+            return cell
+        }
+        
         if hasImageAtIndexPath(indexPath) {
-            
             
             return imageCellAtIndexPath(indexPath)
             
@@ -221,6 +274,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func hasImageAtIndexPath(indexPath:NSIndexPath) -> Bool {
+       // print(indexPath.row)
+        //print(feeds.count)
         let feed = feeds[indexPath.row]
         if(feed.photoView.isEmpty){
             return false
@@ -250,6 +305,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let row = indexPath.row
         let feed = feeds[row]
         cell.Content.text=feed.textView
+        cell.feedId = feed.id
     }
     
     func setTimeForCell(cell:BasicCell, indexPath:NSIndexPath) {
@@ -258,7 +314,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let myString = feed.currentTime
         var myArray2 = myString.componentsSeparatedByString(".")
-        cell.Time.text=myArray2[0]
+        cell.Time.text=myArray2[0]        
         //cell.MyTime.text = feed.currentTime
         
     }
@@ -303,7 +359,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let row = indexPath.row
-        print(feeds[row])
+       // print(feeds[row])
     }
     
     //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -338,6 +394,24 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == blogSegueIdentifier {
+            if let destination = segue.destinationViewController as? BasicCellDetail {
+                //print(homeTable.indexPathForSelectedRow)
+                if let blogIndex = homeTable.indexPathForSelectedRow?.row {
+                    destination.content = self.feeds[blogIndex]
+                }
+            }
+        }
+        if segue.identifier == blogSegueIdentifier2 {
+            if let destination = segue.destinationViewController as? ImageCellDetail {
+                //print(homeTable.indexPathForSelectedRow)
+                if let blogIndex = homeTable.indexPathForSelectedRow?.row {
+                    destination.content = self.feeds[blogIndex]
+                }
+            }
+        }
+    }
 
     
     

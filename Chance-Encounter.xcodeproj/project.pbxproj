@@ -34,6 +34,10 @@
 		DC7895AC1C914415004534B5 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7895A71C914415004534B5 /* Icon-Small-50@2x.png */; };
 		DC7895AD1C914415004534B5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7895A81C914415004534B5 /* Icon.png */; };
 		DC7895AE1C914415004534B5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7895A91C914415004534B5 /* Icon@2x.png */; };
+		DC8888511CBF5BFB00F5BBB0 /* MyBasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8888501CBF5BFB00F5BBB0 /* MyBasicCell.swift */; };
+		DC8888531CBF5C1500F5BBB0 /* MyImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8888521CBF5C1500F5BBB0 /* MyImageCell.swift */; };
+		DC8888551CBF5D5A00F5BBB0 /* MyBasicDetai.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8888541CBF5D5A00F5BBB0 /* MyBasicDetai.swift */; };
+		DC8888571CBF5D7100F5BBB0 /* MyImageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8888561CBF5D7100F5BBB0 /* MyImageDetail.swift */; };
 		DCAA14EE1C87FA860044E386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAA14ED1C87FA860044E386 /* AppDelegate.swift */; };
 		DCAA14F01C87FA860044E386 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAA14EF1C87FA860044E386 /* ViewController.swift */; };
 		DCAA14F61C87FA860044E386 /* Chance_Encounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAA14F41C87FA860044E386 /* Chance_Encounter.xcdatamodeld */; };
@@ -45,11 +49,15 @@
 		DCAA15211C87FCFF0044E386 /* login320x548.png in Resources */ = {isa = PBXBuildFile; fileRef = DCAA15201C87FCFF0044E386 /* login320x548.png */; };
 		DCAA15231C880BDA0044E386 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAA15221C880BDA0044E386 /* LoginViewController.swift */; };
 		DCAA15251C8906570044E386 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAA15241C8906570044E386 /* SignUp.swift */; };
+		DCACCBF31CB62FA100EFA599 /* CommentCellForImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCACCBF21CB62FA100EFA599 /* CommentCellForImage.swift */; };
 		DCD3AC171C920072001CE7A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3AC161C920072001CE7A4 /* HomeViewController.swift */; };
 		DCD77EDD1CA2673700241134 /* MyPostBasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD77EDC1CA2673700241134 /* MyPostBasicCell.swift */; };
 		DCD77EDF1CA2676700241134 /* MyPostImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD77EDE1CA2676700241134 /* MyPostImageCell.swift */; };
 		DCD77EE11CA3E78700241134 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD77EE01CA3E78700241134 /* Vote.swift */; };
 		DCD77EE31CA3EB5D00241134 /* ConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD77EE21CA3EB5D00241134 /* ConnectManager.swift */; };
+		DCF73A661CADAFB5000745E3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73A651CADAFB5000745E3 /* Location.swift */; };
+		DCF73A681CAEBBE3000745E3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73A671CAEBBE3000745E3 /* Comment.swift */; };
+		DCF73A6A1CAEBC5D000745E3 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73A691CAEBC5D000745E3 /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC72BD241C9EAE2300804ECF /* Chance-Encounter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chance-Encounter-Bridging-Header.h"; sourceTree = "<group>"; };
+		DC2F45881CC76D6B00546619 /* Chance-Encounter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chance-Encounter-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC72BD261C9EB1DB00804ECF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DC72BD2A1CA063D300804ECF /* BasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		DC72BD2C1CA06B2A00804ECF /* BasicCellDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCellDetail.swift; sourceTree = "<group>"; };
@@ -98,6 +106,10 @@
 		DC7895A71C914415004534B5 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		DC7895A81C914415004534B5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		DC7895A91C914415004534B5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DC8888501CBF5BFB00F5BBB0 /* MyBasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBasicCell.swift; sourceTree = "<group>"; };
+		DC8888521CBF5C1500F5BBB0 /* MyImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageCell.swift; sourceTree = "<group>"; };
+		DC8888541CBF5D5A00F5BBB0 /* MyBasicDetai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBasicDetai.swift; sourceTree = "<group>"; };
+		DC8888561CBF5D7100F5BBB0 /* MyImageDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageDetail.swift; sourceTree = "<group>"; };
 		DCAA14EA1C87FA860044E386 /* Chance-Encounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chance-Encounter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAA14ED1C87FA860044E386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAA14EF1C87FA860044E386 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,11 +127,15 @@
 		DCAA15201C87FCFF0044E386 /* login320x548.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login320x548.png; path = "Chance-Encounter/login320x548.png"; sourceTree = "<group>"; };
 		DCAA15221C880BDA0044E386 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DCAA15241C8906570044E386 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		DCACCBF21CB62FA100EFA599 /* CommentCellForImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellForImage.swift; sourceTree = "<group>"; };
 		DCD3AC161C920072001CE7A4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DCD77EDC1CA2673700241134 /* MyPostBasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostBasicCell.swift; sourceTree = "<group>"; };
 		DCD77EDE1CA2676700241134 /* MyPostImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostImageCell.swift; sourceTree = "<group>"; };
 		DCD77EE01CA3E78700241134 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		DCD77EE21CA3EB5D00241134 /* ConnectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectManager.swift; sourceTree = "<group>"; };
+		DCF73A651CADAFB5000745E3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		DCF73A671CAEBBE3000745E3 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = ../Comment.swift; sourceTree = "<group>"; };
+		DCF73A691CAEBC5D000745E3 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,12 +189,12 @@
 		DCAA14E11C87FA860044E386 = {
 			isa = PBXGroup;
 			children = (
+				DC2F45881CC76D6B00546619 /* Chance-Encounter-Bridging-Header.h */,
 				DC78958A1C911599004534B5 /* New Group */,
 				DCAA14EC1C87FA860044E386 /* Chance-Encounter */,
 				DCAA15041C87FA870044E386 /* Chance-EncounterTests */,
 				DCAA150F1C87FA870044E386 /* Chance-EncounterUITests */,
 				DCAA14EB1C87FA860044E386 /* Products */,
-				DC72BD241C9EAE2300804ECF /* Chance-Encounter-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,9 +224,17 @@
 				DC72BD2E1CA0916300804ECF /* ImageCell.swift */,
 				DC72BD2C1CA06B2A00804ECF /* BasicCellDetail.swift */,
 				DC72BD301CA0E89700804ECF /* ImageCellDetail.swift */,
+				DCF73A671CAEBBE3000745E3 /* Comment.swift */,
+				DCF73A691CAEBC5D000745E3 /* CommentTableViewCell.swift */,
+				DCACCBF21CB62FA100EFA599 /* CommentCellForImage.swift */,
 				DC72BD361CA12B9700804ECF /* ShowMyFeed.swift */,
 				DCD77EDC1CA2673700241134 /* MyPostBasicCell.swift */,
 				DCD77EDE1CA2676700241134 /* MyPostImageCell.swift */,
+				DC8888501CBF5BFB00F5BBB0 /* MyBasicCell.swift */,
+				DC8888521CBF5C1500F5BBB0 /* MyImageCell.swift */,
+				DC8888541CBF5D5A00F5BBB0 /* MyBasicDetai.swift */,
+				DC8888561CBF5D7100F5BBB0 /* MyImageDetail.swift */,
+				DCF73A651CADAFB5000745E3 /* Location.swift */,
 				DC72BD261C9EB1DB00804ECF /* Main.storyboard */,
 				DCAA14F91C87FA860044E386 /* LaunchScreen.storyboard */,
 				DCAA14F71C87FA860044E386 /* Assets.xcassets */,
@@ -311,6 +335,7 @@
 				TargetAttributes = {
 					DCAA14E91C87FA860044E386 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = E3FB2W6S24;
 					};
 					DCAA15001C87FA870044E386 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -397,21 +422,29 @@
 			files = (
 				DCD3AC171C920072001CE7A4 /* HomeViewController.swift in Sources */,
 				DC72BD351CA115C300804ECF /* Feed.swift in Sources */,
+				DC8888511CBF5BFB00F5BBB0 /* MyBasicCell.swift in Sources */,
 				DCAA15251C8906570044E386 /* SignUp.swift in Sources */,
 				DCD77EE11CA3E78700241134 /* Vote.swift in Sources */,
+				DCF73A661CADAFB5000745E3 /* Location.swift in Sources */,
 				DC72BD311CA0E89700804ECF /* ImageCellDetail.swift in Sources */,
 				DCD77EDD1CA2673700241134 /* MyPostBasicCell.swift in Sources */,
+				DCF73A6A1CAEBC5D000745E3 /* CommentTableViewCell.swift in Sources */,
 				DC72BD2F1CA0916300804ECF /* ImageCell.swift in Sources */,
 				DCAA14F01C87FA860044E386 /* ViewController.swift in Sources */,
+				DC8888571CBF5D7100F5BBB0 /* MyImageDetail.swift in Sources */,
 				DCAA14F61C87FA860044E386 /* Chance_Encounter.xcdatamodeld in Sources */,
 				DC72BD371CA12B9700804ECF /* ShowMyFeed.swift in Sources */,
 				DCAA14EE1C87FA860044E386 /* AppDelegate.swift in Sources */,
+				DC8888531CBF5C1500F5BBB0 /* MyImageCell.swift in Sources */,
 				DC72BD331CA0F73E00804ECF /* FeedViewController.swift in Sources */,
 				DCD77EDF1CA2676700241134 /* MyPostImageCell.swift in Sources */,
 				DC72BD2D1CA06B2A00804ECF /* BasicCellDetail.swift in Sources */,
 				DC72BD2B1CA063D300804ECF /* BasicCell.swift in Sources */,
+				DCF73A681CAEBBE3000745E3 /* Comment.swift in Sources */,
+				DC8888551CBF5D5A00F5BBB0 /* MyBasicDetai.swift in Sources */,
 				DCD77EE31CA3EB5D00241134 /* ConnectManager.swift in Sources */,
 				DCAA15231C880BDA0044E386 /* LoginViewController.swift in Sources */,
+				DCACCBF31CB62FA100EFA599 /* CommentCellForImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,10 +577,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Chance-Encounter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nitalan.Chance-Encounter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chance-Encounter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -558,10 +594,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Chance-Encounter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nitalan.Chance-Encounter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chance-Encounter-Bridging-Header.h";
 			};
 			name = Release;

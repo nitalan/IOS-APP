@@ -11,14 +11,7 @@ import UIKit
 class MyPostImageCell: MyPostBasicCell {
     
    
-    
-    @IBAction override func upVote(sender: AnyObject) {
-    }
-    
-    
-    @IBAction override func downVote(sender: AnyObject) {
-        
-    }
+   
     @IBOutlet weak var MyCustomImageView: UIImageView!
     
     var imageWidth:Int!
@@ -50,7 +43,7 @@ class MyPostImageCell: MyPostBasicCell {
         
         MyCustomImageView.userInteractionEnabled = true
         self.oldFrame = MyCustomImageView.frame
-        let show = UITapGestureRecognizer(target: self, action: "showImage:")
+        let show = UITapGestureRecognizer(target: self, action: #selector(MyPostImageCell.showImage(_:)))
         MyCustomImageView.addGestureRecognizer(show)
         
 
@@ -75,7 +68,7 @@ class MyPostImageCell: MyPostBasicCell {
         imageView.tag = 1
         backgroundView.addSubview(imageView)
         window?.addSubview(backgroundView)
-        let hide = UITapGestureRecognizer(target: self, action: "hideImage:")
+        let hide = UITapGestureRecognizer(target: self, action: #selector(MyPostImageCell.hideImage(_:)))
         
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(hide)

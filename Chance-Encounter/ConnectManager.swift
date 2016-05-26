@@ -56,6 +56,7 @@ class ConnectManager: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceA
         browser = MCNearbyServiceBrowser(peer: peer, serviceType: "appcoda-mpc")
         browser.delegate = self
         
+        
         advertiser = MCNearbyServiceAdvertiser(peer: peer, discoveryInfo: nil, serviceType: "appcoda-mpc")
         advertiser.delegate = self
     }
@@ -64,20 +65,31 @@ class ConnectManager: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceA
     // MARK: MCNearbyServiceBrowserDelegate method implementation
     
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        foundPeers.append(peerID)
-        
+        print(peerID)
+        var test = false
+        for item in foundPeers{
+            if item == peerID{
+                test = true
+                break
+            }
+        }
+        if(test==false){
+            foundPeers.append(peerID)
+        }
         delegate?.foundPeer()
     }
     
     
     func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        //print("ooooo")
         for (index, aPeer) in foundPeers.enumerate(){
             if aPeer == peerID {
+               // print("aaaa")
                 foundPeers.removeAtIndex(index)
                 break
             }
         }
-        
+       // print("ooooo2")
         delegate?.lostPeer()
     }
     

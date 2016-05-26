@@ -17,6 +17,8 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
     let basicCellIdentifier = "MyBasicCell"
     let imageCellIdentifier = "MyImageCell"
     
+    let blogSegueIdentifier = "ShowMyBasicCell"
+    let blogSegueIdentifier2 = "ShowMyImageCell"
 
 
     var feeds = [Feed]()
@@ -48,17 +50,17 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
                 
                 if error != nil
                 {
-                    print("error=\(error)")
+                    //print("error=\(error)")
                     return
                 }
                 
                 // You can print out response object
                 
-                print("response = \(response)")
+                //print("response = \(response)")
                 
                 // Print out response body
                 let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("responseString = \(responseString)")
+                //print("responseString = \(responseString)")
                 
                 //var err: NSError?
                 
@@ -70,13 +72,13 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
                     //let resultValue = parseJSON["status"] as? String
                     for items in parseJSON
                     {
-                        let id = items[0] as! String
-                        let username = items[1] as! String
-                        let des = items[2] as! String
-                        let time = items[3] as! String
-                        let commentSize = items[4] as! String
-                        let voteNum = items[5] as! String
-                        let imageView = items[6] as? String
+                        let id = items.objectAtIndex(0) as! String
+                        let username = items.objectAtIndex(1) as! String
+                        let des = items.objectAtIndex(2)as! String
+                        let time = items.objectAtIndex(3) as! String
+                        let commentSize = items.objectAtIndex(4) as! String
+                        let voteNum = items.objectAtIndex(5) as! String
+                        let imageView = items.objectAtIndex(6) as? String
                         
                         let feedx = Feed(id: Int(id)!, username: username,textView: des,currentTime: time,feeds_commentSize: Int(commentSize)!,voteNum:Int(voteNum)!,photoView:imageView!)!
                         self.feeds.append(feedx)
@@ -157,7 +159,7 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         let myString = feed.currentTime
         var myArray2 = myString.componentsSeparatedByString(".")
-        cell.MyTime.text=myArray2[0]
+        cell.MyTime.text=myArray2[0]        
           //cell.MyTime.text = feed.currentTime
        
     }
@@ -201,8 +203,8 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
     // MARK:  UITableViewDelegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let row = indexPath.row
-        print(feeds[row])
+        //let row = indexPath.row
+        //print(feeds[row])
     }
     
 //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -249,6 +251,8 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
 //         MyTableView.estimatedRowHeight = 89
 //         MyTableView.rowHeight = UITableViewAutomaticDimension
         self.MyTableView.rowHeight = 170;
+        //self.automaticallyAdjustsScrollViewInsets = false
+
 
     }
     
@@ -268,6 +272,26 @@ class ShowMyFeed: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         
         
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == blogSegueIdentifier {
+            if let destination = segue.destinationViewController as? MyBasicDetail {
+                //print(MyTableView.indexPathForSelectedRow)
+                if let blogIndex = MyTableView.indexPathForSelectedRow?.row {
+                    destination.content = self.feeds[blogIndex]
+                }
+            }
+        }
+        if segue.identifier == blogSegueIdentifier2 {
+            if let destination = segue.destinationViewController as? MyImageDetail {
+                //print(MyTableView.indexPathForSelectedRow)
+                if let blogIndex = MyTableView.indexPathForSelectedRow?.row {
+                    destination.content = self.feeds[blogIndex]
+                }
+            }
+        }
     }
     
 

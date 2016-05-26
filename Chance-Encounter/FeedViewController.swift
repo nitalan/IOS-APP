@@ -223,10 +223,10 @@ class FeedViewController: UIViewController,UITextViewDelegate,UIAlertViewDelegat
                         print("result: \(resultValue)")
                         
                         if(resultValue == "Success"){
-                            let id = (parseJSON["detail"]!)[0] as! String
-                            let username = (parseJSON["detail"]!)[1] as! String
-                            let commentSize = (parseJSON["detail"]!)[4] as! String
-                            let image = (parseJSON["detail"]!)[6] as! String
+                            let id = (parseJSON["detail"]!).objectAtIndex(0) as! String
+                            let username = (parseJSON["detail"]!).objectAtIndex(1) as! String
+                            let commentSize = (parseJSON["detail"]!).objectAtIndex(4) as! String
+                            let image = (parseJSON["detail"]!).objectAtIndex(6) as! String
                             //                            let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             //                            let decodedimage = UIImage(data: decodedData!)
                             //println(decodedimage)

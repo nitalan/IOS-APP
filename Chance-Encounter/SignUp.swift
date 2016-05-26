@@ -5,6 +5,15 @@
 //  Created by 皎文 蓝 on 3/3/16.
 //  Copyright © 2016 jiaowen. All rights reserved.
 //
+extension String {
+    func sha1() -> String {
+        let data = self.dataUsingEncoding(NSUTF8StringEncoding)!
+        var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
+        CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+        return hexBytes.joinWithSeparator("")
+    }
+}
 
 import UIKit
 
@@ -67,7 +76,7 @@ class SignUp: UIViewController ,UITextFieldDelegate{
     {
         let MyAlert = UIAlertController(title:"Alert",message:userMessage,preferredStyle:UIAlertControllerStyle.Alert);
         
-        let okAction = UIAlertAction(title:"Alert",style:UIAlertActionStyle.Default,handler:nil)
+        let okAction = UIAlertAction(title:"OK",style:UIAlertActionStyle.Default,handler:nil)
         
         MyAlert.addAction(okAction)
         self.presentViewController(MyAlert,animated:true,completion:nil);
@@ -85,7 +94,7 @@ class SignUp: UIViewController ,UITextFieldDelegate{
         if(usernameT.isEmpty||passwordT.isEmpty||confirmPwdT.isEmpty)
         {
             //display alert message
-            displayMyAlertMessage("All Files Are Required");
+            displayMyAlertMessage("All fields required");
             //  dispatch_async("All Files Are Required");
             return;
         }
@@ -99,7 +108,10 @@ class SignUp: UIViewController ,UITextFieldDelegate{
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod="POST";
         //compose a query string
-        let postString = "username=\(usernameT)&password=\(passwordT)";
+        //sha1(passwordT)
+        let pwd = passwordT.sha1()
+        
+        let postString = "username=\(usernameT)&password=\(pwd)";
         
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
         
